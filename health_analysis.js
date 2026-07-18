@@ -1,10 +1,10 @@
 const addPatientButton = document.getElementById("addPatient");
 const report = document.getElementById("report");
-const btnSearch = document.getElementById("btnSearch");
+const btnSearch = document.getElementById('btnSearch');
 const patients = [];
 
 function addPatient() {
-    const name = document.getElementById("name").ariaValueMax;
+    const name = document.getElementById("name").value;
     const gender = document.querySelector('input[name="gender"]:checked');
     const age = document.getElementById("age").value;
     const condition = document.getElementById("condition").value;
@@ -41,7 +41,7 @@ function searchCondition(){
                 resultDiv.innerHTML += `<h2>${condition.name}</h2>`;
                 resultDiv.innerHTML += `<img src="${condition.imagesrc}" alt="hjh">`;
 
-                resuldDiv.innerHTML += `<p><strong>Symptoms:</strong> ${symptoms}</p>`;
+                resultDiv.innerHTML += `<p><strong>Symptoms:</strong> ${symptoms}</p>`;
                 resultDiv.innerHTML += `<p><strong>Prevention:</strong> ${prevention}</p>`;
                 resultDiv.innerHTML += `<p><strong>Treatment:</strong> ${treatment}</p>`;
             } else {
@@ -54,7 +54,7 @@ function searchCondition(){
         });
 }
 
-btnSearch.addEventListener('click', searchCondition);
+
 
 function generateReport(){
     const numPatients = patients.length;
@@ -63,7 +63,7 @@ function generateReport(){
         Thyroid: 0,
         "High Blood Pressure": 0,
     };
-    const genderConditionscount = {
+    const genderConditionsCount = {
         Male: {
             Diabetes: 0,
             Thyroid: 0,
@@ -91,9 +91,10 @@ function generateReport(){
     for (const gender in genderConditionscount){
         report.innerHTML += `${gender}:<br>`;
         for (const condition in genderConditionscount[gender]) {
-            report.innerHTML += `&nbsp;&nbsp;${condition}: ${genderConditionscount}[gender][condition]<br>`;
+            report.innerHTML += `&nbsp;&nbsp;${condition}: ${genderConditionsCount[gender][condition]}<br>`;
         }
     }
 }
 
 addPatientButton.addEventListener("click", addPatient);
+btnSearch.addEventListener('click', searchCondition);
